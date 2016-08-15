@@ -1,0 +1,21 @@
+<ion-item>
+  <div class="row">
+    <span 
+      class="col-33"
+      editable-text="model.prefix" 
+      buttons="no" 
+      onbeforesave="update({prefix: $data})">
+      {{model.prefix}}
+    </span>
+    <span class="col-67"
+      editable-text="model.target" 
+      buttons="no"
+      onbeforesave="update({target: $data})">
+      {{model.target}}
+    </span>
+  </div>
+  <ion-delete-button 
+    class="ion-minus-circled" 
+    ng-click="destroy()">
+  </ion-delete-button>
+</ion-item>

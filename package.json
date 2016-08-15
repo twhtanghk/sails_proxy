@@ -1,0 +1,50 @@
+{
+  "name": "sails_proxy",
+  "version": "0.0.1",
+  "description": "Reverse proxy with rest API runtime configuration",
+  "main": "app.js",
+  "bin": {
+    "sails_proxy": "./bin/sails_proxy"
+  },
+  "scripts": {
+    "start": "node app.js --prod",
+    "test": "node_modules/.bin/mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twhtanghk/sails_proxy.git"
+  },
+  "author": "Tommy Tang <twhtanghk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twhtanghk/sails_proxy/issues"
+  },
+  "homepage": "https://github.com/twhtanghk/sails_proxy#readme",
+  "dependencies": {
+    "http-echo-server": "^1.0.0",
+    "http-proxy-middleware": "^0.17.0",
+    "lodash": "^4.15.0",
+    "minimist": "^1.2.0",
+    "sails": "^0.12.4",
+    "sails-hook-requestlogger": "^1.0.0",
+    "sails-mongo": "^0.12.1"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "browserify": "^13.1.0",
+    "coffeeify": "^2.0.1",
+    "debowerify": "^1.5.0",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "mocha": "^3.0.2",
+    "streamqueue": "^1.1.1",
+    "supertest": "^2.0.0",
+    "supertest-as-promised": "^3.2.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

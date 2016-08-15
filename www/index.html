@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body ng-app="starter">
+    <ion-view ng-controller="UpstreamsCtrl">
+      <ion-header-bar class='bar-positive'>
+        <div class="buttons">
+          <button 
+            class="button button-light ion-minus-circled" 
+            ng-click="showDelete = ! showDelete">
+            Delete
+          </button>
+        </div>
+        <h1 class='title'>Upstream Apps</h1>
+        <div class="buttons">
+          <button 
+            class="button button-light ion-plus-circled" 
+            ng-click="create()">
+            New
+          </button>
+        </div>
+      </ion-header-bar>
+      <ion-content class="has-header">
+        <ng-include src="'templates/collection.html'"
+      </ion-content>
+    <ion-view>
+  </body>
+</html>
