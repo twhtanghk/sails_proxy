@@ -13,7 +13,7 @@ Reverse proxy with rest API runtime configuration
 3. update proxy settings defined in upstream.coffee if required
 4. setup mongo database server with default host proxy_mongo and port 27017
 ```
-npm config set user root
+npm config set user root # if run by docker
 npm install sails_proxy -g
 set -a; . .env; set +a
 env NODE_ENV=development sails_proxy
