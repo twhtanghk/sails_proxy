@@ -1,0 +1,24 @@
+version: '2'
+services:
+  proxy_mongo:
+    image: mongo
+    container_name: proxy_mongo
+    hostname: proxy_mongo
+    ports:
+      - 27017
+    volumes:
+      - ${COMPOSEROOT}/proxy_mongo/data:/data/db
+    command: mongod --directoryperdb
+
+  sails_proxy:
+    depends_on:
+      - proxy_mongo
+    image: twhtanghk/sails_proxy
+    container_name: sails_proxy
+    hostname: sails_proxy
+    ports:
+      - 1337:1337
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      

@@ -21,13 +21,20 @@ module.exports =
     updatedBy:
       type: 'email'
 
-  # convert [upstream...] to { prefix1: target1, prefix2: target2, ...}
+  # convert [upstream...] to { prefix1: target1, prefix2: target2, ... }
   toRouter: (upstreams) ->
     ret = {}
     _.each upstreams, (upstream) ->
       ret[upstream.prefix] = upstream.target
     return ret
     
+  # convert [upstream...] to { ^prefix1: /, ^prefix2: /, ... }
+  toPathRewrite: (upstreams) ->
+    ret = {}
+    _.each upstreams, (upstream) ->
+      ret["^#{upstream.prefix}"] = '/'
+    return ret
+
   # return http-proxy-middleware instance with existing saved upstream settings
   middleware: (req, res, next) ->
     # check if url matched any path defined in sails.config.proxy.router
@@ -45,7 +52,9 @@ module.exports =
       .sort order: 1  # in ascending order
       .then (upstreams) =>
         @router = @toRouter upstreams
-        _.extend sails.config.proxy, router: @router
+        _.extend sails.config.proxy, router: @router,
+        if not sails.config.proxy.prependPath
+          _.extend sails.config.proxy, pathRewrite: @toPathRewrite upstreams
         @proxy = require('http-proxy-middleware') sails.config.proxy
         sails.log.info "proxy reloaded"
     

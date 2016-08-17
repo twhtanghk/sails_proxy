@@ -22,6 +22,4 @@ module.exports =
               .save()
               .then ->
                 app
-      .then (apps) ->
-        res.ok apps
-      .catch res.serverError
+      .then res.ok, res.serverError

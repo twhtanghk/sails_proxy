@@ -3,7 +3,7 @@ _ = require 'lodash'
 _.defaults process.env,
   PORT: 1337
   xfwd: 'true'
-  prependPath: 'true'
+  prependPath: 'false'
   ignorePath: 'false'
 
 module.exports =

@@ -1,7 +1,7 @@
 module.exports =
   bootstrap: (cb) ->
     # add default echo upstream with next available port
-    process.env.PORT++
+    process.env.PORT = sails.config.port + 1
 
     # findOrCreate default echo service
     sails.models.upstream
