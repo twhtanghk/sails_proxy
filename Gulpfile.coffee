@@ -20,7 +20,11 @@ gulp.task 'css', ->
     gulp.src ['./scss/ionic.app.scss']
       .pipe sass()
       .pipe concat 'scss-files.scss'
-    gulp.src ['./www/lib/angular-xeditable/dist/css/xeditable.css']
+    gulp.src [
+        './www/lib/angular-xeditable/dist/css/xeditable.css'
+        './www/lib/ng-sortable/dist/ng-sortable.css'
+        './www/lib/ng-sortable/dist/ng-sortable.style.css'
+      ]
       .pipe concat 'css-files.css'
   ]
   merge objectMode: true, lessAll, cssAll, scssAll

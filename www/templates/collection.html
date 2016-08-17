@@ -1,7 +1,9 @@
-<ion-list show-delete="showDelete">
-  <ng-repeat 
+<ion-list
+  data-as-sortable="drag"
+  data-ng-model="collection">
+  <ng-repeat
     ng-repeat="model in collection" 
-    ng-include="'templates/model.html'" 
+    ng-include="'templates/model.html'"
     ng-controller="UpstreamCtrl">
   </ng-repeat>
 </ion-list>

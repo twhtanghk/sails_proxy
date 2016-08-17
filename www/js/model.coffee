@@ -25,5 +25,19 @@ angular.module 'starter.model', ['ActiveRecord']
 
       $urlRoot: 'upstream'
 
+      @reorder = (apps) ->
+        upstreams = _.map apps, (app) ->
+          app.id
+        ActiveRecord
+          .sync 'update', {},
+            url: 'upstream/reorder'
+            data:
+              upstreams: upstreams
+          .then (res) ->
+            ret = []
+            _.each res.data, (upstream) ->
+              ret.push new Upstream upstream
+            ret
+
     User: User
     Upstream: Upstream

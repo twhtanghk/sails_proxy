@@ -47,7 +47,7 @@ module.exports =
         @router = @toRouter upstreams
         _.extend sails.config.proxy, router: @router
         @proxy = require('http-proxy-middleware') sails.config.proxy
-        sails.log.info "proxy reloaded #{sails.config.proxy}"
+        sails.log.info "proxy reloaded"
     
   beforeValidate: (values, cb) ->
     @find()

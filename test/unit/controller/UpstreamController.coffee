@@ -21,14 +21,18 @@ describe 'UpstreamController', ->
       .then (res) ->
         sails.log.info res.body
 
-  _.each ['app1', 'app2'], (app) ->
-    it "put upstream #{app}", ->
-      req sails.hooks.http.app 
-        .put "/upstream"
-        .set 'Content-Type', 'application/json'
-        .set 'x-forwarded-email', 'admin@mob.myvnc.com'
-        .send prefix: "/#{app}", target: "http://#{app}_v2.service.consul:1337"
-        .expect 200
+  it "put upstreams", ->
+    sails.models.upstream
+      .find()
+      .then (apps) ->
+        Promise.all _.map apps, (app) ->
+          req sails.hooks.http.app 
+            .put "/upstream/#{app.id}"
+            .set 'Content-Type', 'application/json'
+            .set 'x-forwarded-email', 'admin@mob.myvnc.com'
+            .send 
+               prefix: "#{app.prefix}_v2"
+            .expect 200
 
   it "get upstream", ->
     req sails.hooks.http.app
@@ -37,14 +41,17 @@ describe 'UpstreamController', ->
       .then (res) ->
         sails.log.info res.body
 
-  _.each ['app1', 'app2'], (app) ->
-    it "delete upstream #{app}", ->
-      req sails.hooks.http.app
-        .delete "/upstream"
-        .set 'Content-Type', 'application/json'
-        .set 'x-forwarded-email', 'admin@mob.myvnc.com'
-        .send prefix: "/#{app}"
-        .expect 200
+  it "delete upstreams", ->
+    sails.models.upstream
+      .find()
+      .then (apps) ->
+        Promise.all _.map apps, (app) ->
+          req sails.hooks.http.app
+            .delete "/upstream/#{app.id}"
+            .set 'Content-Type', 'application/json'
+            .set 'x-forwarded-email', 'admin@mob.myvnc.com'
+            .send prefix: "/#{app}"
+            .expect 200
 
   it "get upstream", ->
     req sails.hooks.http.app

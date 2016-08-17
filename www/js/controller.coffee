@@ -9,7 +9,6 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
       .then (res) ->
         _.merge collection, res
     _.extend $scope, 
-       showDelete: false
        collection: collection
        create: ->
          upstream = new resource.Upstream
@@ -20,6 +19,20 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
            .then ->
              collection.push upstream
            .catch $log.error
+       drag:
+         itemMoved: (event) ->
+           return true
+         orderChanged: (event) ->
+           _.remove $scope.collection, (model) ->
+             model.id == event.source.itemScope.model.id
+           $scope.collection.splice event.dest.index, 0, event.source.itemScope.model
+           resource.Upstream
+             .reorder $scope.collection
+             .then (upstreams) ->
+               $scope.collection.length = 0
+               $scope.collection.push upstreams...
+             .catch $log.error
+         containment: 'ion-view'
 
   .controller 'UpstreamCtrl', ($scope, $log) ->
     _.extend $scope,

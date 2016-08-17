@@ -13,6 +13,10 @@ module.exports =
       controller: 'Upstream'
       action: 'update' 
 
+    'put /upstream/reorder':
+      controller: 'Upstream'
+      action: 'reorder'
+
     'DELETE /upstream':
       controller: 'Upstream'
       action: 'destroy' 

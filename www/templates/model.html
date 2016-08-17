@@ -1,21 +1,27 @@
-<ion-item>
-  <div class="row">
-    <span 
-      class="col-33"
-      editable-text="model.prefix" 
-      buttons="no" 
-      onbeforesave="update({prefix: $data})">
-      {{model.prefix}}
+<ion-item as-sortable-item>
+  <div class="row" as-sortable-item-handle>
+    <span class="col-33">
+      <span
+        data-tap-disabled="true"
+        editable-text="model.prefix" 
+        buttons="no" 
+        onbeforesave="update({prefix: $data})">
+        {{model.prefix}}
+      </span>
     </span>
-    <span class="col-67"
-      editable-text="model.target" 
-      buttons="no"
-      onbeforesave="update({target: $data})">
-      {{model.target}}
+    <span class="col-67">
+      <span
+        data-tap-disabled="true"
+        editable-text="model.target" 
+        buttons="no"
+        onbeforesave="update({target: $data})">
+        {{model.target}}
+      </span>
     </span>
   </div>
-  <ion-delete-button 
-    class="ion-minus-circled" 
+  <ion-option-button 
+    class="button button-assertive icon-left ion-trash-a" 
     ng-click="destroy()">
-  </ion-delete-button>
+    Delete
+  </ion-option-button>
 </ion-item>

@@ -8,7 +8,7 @@ module.exports =
       .findOrCreate {prefix: '/echo'}, 
         prefix: '/echo'
         target: "http://localhost:#{process.env.PORT}"
-        order: 1
+        order: 0
         createdBy: sails.config.adminGrp[0]
       .then ->
 
