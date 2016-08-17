@@ -3,9 +3,8 @@ Reverse proxy with rest API runtime configuration
 
 ## Configuration
 
-### Configured by environment variables in [.env](https://github.com/twhtanghk/sails_proxy/blob/master/.env)
-
-### Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured on next available port (default: env.PORT + 1)
+1. Configured by environment variables in [.env](https://github.com/twhtanghk/sails_proxy/blob/master/.env)
+2. Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured on next available port (default: env.PORT + 1)
 
 ## Start sails_proxy
 ### run as node application
@@ -14,6 +13,7 @@ Reverse proxy with rest API runtime configuration
 3. update proxy settings defined in upstream.coffee if required
 4. setup mongo database server with default host proxy_mongo and port 27017
 ```
+npm config set user root
 npm install sails_proxy -g
 set -a; . .env; set +a
 env NODE_ENV=development sails_proxy
