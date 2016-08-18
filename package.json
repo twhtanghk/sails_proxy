@@ -1,6 +1,6 @@
 {
   "name": "sails_proxy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Reverse proxy with rest API runtime configuration",
   "main": "app.js",
   "bin": {
@@ -37,7 +37,7 @@
     "lodash": "^4.15.0",
     "minimist": "^1.2.0",
     "sails": "^0.12.4",
-    "sails-hook-requestlogger": "^1.0.0",
+    "sails-hook-requestlogger-file": "^2.0.5",
     "sails-mongo": "^0.12.1",
     "streamqueue": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
