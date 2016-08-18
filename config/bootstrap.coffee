@@ -12,7 +12,7 @@ module.exports =
         createdBy: sails.config.adminGrp[0]
       .then ->
 
-        # start echo server on next availabl port
+        # start echo server on next available port
         require 'http-echo-server'
 
         # reload proxy settings and initialize proxy

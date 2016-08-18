@@ -1,13 +1,13 @@
 {
   "name": "sails_proxy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reverse proxy with rest API runtime configuration",
   "main": "app.js",
   "bin": {
     "sails_proxy": "./bin/sails_proxy"
   },
   "scripts": {
-    "postinstall": "./bin/postinstall",
+    "postinstall": "bower install --allow-root && gulp",
     "start": "node app.js --prod",
     "test": "node_modules/.bin/mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
   },
