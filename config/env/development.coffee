@@ -1,7 +1,6 @@
 module.exports =
   models:
     migrate: 'drop'
-  adminGrp: [ process.env.admin || 'admin@mob.myvnc.com' ]
   isAuth: (req) ->
     req.headers['x-forwarded-email'] = sails.config.adminGrp[0]
     req.headers['x-forwarded-email'] in sails.config.adminGrp

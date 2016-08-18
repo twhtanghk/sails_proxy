@@ -1,3 +1,5 @@
+_ = require 'lodash'
+
 module.exports =
   bootstrap: (cb) ->
     # findOrCreate default echo service
@@ -6,10 +8,11 @@ module.exports =
         prefix: process.env.echoPrefix || '/echo'
         target: process.env.echoTarget || 'http://echo:1338'
         order: 0
-        createdBy: sails.config.adminGrp[0]
+        createdBy: sails.config.admin[0]
       .then ->
         # reload proxy settings and initialize proxy
         sails.models.upstream.reload()
       .then ->
+        sails.log.info _.pick(sails.config, 'proxy', 'admin', 'port')
         cb()
       .catch cb
