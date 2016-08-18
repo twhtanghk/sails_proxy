@@ -27,7 +27,7 @@ env NODE_ENV=development sails_proxy
 docker run --name sails_proxy --env-file .env -p 1337:1337 -v /path/upstream.coffee:/usr/src/app/config/env/upstream.coffee -d twhtanghk/sails_proxy
 ```
 
-### run by docker compose (preferred way to start reqired services mongo, echo, sails_proxy)
+### run by docker compose (preferred way to start required services mongo, echo, sails_proxy)
 1. create config files '.env' and 'upstream.coffee' if required
 2. update environment variables defined in .env
 3. update proxy settings defined in upstream.coffee if required
