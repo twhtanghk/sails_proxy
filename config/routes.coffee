@@ -9,14 +9,14 @@ module.exports =
       controller: 'Upstream'
       action: 'create' 
 
-    'PUT /upstream':
+    'PUT /upstream/:id':
       controller: 'Upstream'
       action: 'update' 
 
-    'put /upstream/reorder':
+    'PUT /upstream/reorder':
       controller: 'Upstream'
       action: 'reorder'
 
-    'DELETE /upstream':
+    'DELETE /upstream/:id':
       controller: 'Upstream'
       action: 'destroy' 

@@ -10,9 +10,19 @@ services:
       - ${COMPOSEROOT}/proxy_mongo/data:/data/db
     command: mongod --directoryperdb
 
+  echo:
+    image: solsson/http-echo
+    container_name: echo
+    hostname: echo
+    ports: 
+      - 1338
+    environment:
+      PORT: 1338
+
   sails_proxy:
     depends_on:
       - proxy_mongo
+      - echo
     image: twhtanghk/sails_proxy
     container_name: sails_proxy
     hostname: sails_proxy
@@ -21,4 +31,3 @@ services:
     env_file: .env
     environment:
       NODE_ENV: development
-      
