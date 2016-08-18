@@ -4,7 +4,7 @@ Reverse proxy with rest API runtime configuration
 ## Configuration
 
 1. Configured by environment variables in [.env](https://github.com/twhtanghk/sails_proxy/blob/master/.env)
-2. Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured on next available port (default: env.PORT + 1)
+2. Assume default upstream [echo](http://github.com/solsson/docker-http-echo) on http://echo:1338
 
 ## Start sails_proxy
 ### run as node application
