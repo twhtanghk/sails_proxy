@@ -1,6 +1,6 @@
 FROM	node
 
-ENV VERSION 0.0.2
+ENV VERSION 0.0.3
 RUN	npm config set user root && \
 	npm install sails_proxy@${VERSION} -g
 EXPOSE	1337
