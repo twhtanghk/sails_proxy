@@ -7,6 +7,8 @@ merge = require 'streamqueue'
 minify = require 'gulp-minify-css'
 rename = require 'gulp-rename'
 browserify = require 'browserify'
+streamify = require 'gulp-streamify'
+uglify = require 'gulp-uglify'
 source = require 'vinyl-source-stream'
 rework = require 'gulp-rework'
 reworkNPM = require 'rework-npm'
@@ -39,11 +41,14 @@ gulp.task 'css', ->
 
 gulp.task 'coffee', ->
   browserify(entries: ['./www/js/index.coffee'])
-    .transform('coffeeify')
-    .transform('debowerify')
+    .transform 'coffeeify'
+    .transform 'debowerify'
     .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('./www/js/'))
+    .pipe source 'index.js'
+    .pipe gulp.dest './www/js/'
+    .pipe streamify uglify()
+    .pipe rename extname: '.min.js'
+    .pipe gulp.dest './www/js/'
 
 gulp.task 'template', ->
   gulp.src('./www/templates/**/*.html')
@@ -56,4 +61,5 @@ gulp.task 'clean', ->
     'www/css/ionic.app.min.css'
     'node_modules'
     'www/lib'
+    'www/js/*.js'
   ]

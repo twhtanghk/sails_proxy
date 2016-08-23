@@ -1,12 +1,13 @@
 {
   "name": "sails_proxy",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Reverse proxy with rest API runtime configuration",
   "main": "app.js",
   "bin": {
     "sails_proxy": "./bin/sails_proxy"
   },
   "scripts": {
+    "postinstall": "bower install --allow-root && gulp",
     "start": "bin/sails_proxy",
     "test": "node_modules/.bin/mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
   },
@@ -45,6 +46,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-rework": "^1.2.0",
     "gulp-sass": "^2.3.2",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^2.0.0",
     "mocha": "^3.0.2",
     "rework-npm": "^1.0.0",
     "streamqueue": "^1.1.1",
