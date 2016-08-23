@@ -9,13 +9,13 @@ module.exports =
       controller: 'Upstream'
       action: 'create' 
 
-    'PUT /upstream/:id':
-      controller: 'Upstream'
-      action: 'update' 
-
     'PUT /upstream/reorder':
       controller: 'Upstream'
       action: 'reorder'
+
+    'PUT /upstream/:id':
+      controller: 'Upstream'
+      action: 'update' 
 
     'DELETE /upstream/:id':
       controller: 'Upstream'

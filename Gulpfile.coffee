@@ -8,7 +8,12 @@ minify = require 'gulp-minify-css'
 rename = require 'gulp-rename'
 browserify = require 'browserify'
 source = require 'vinyl-source-stream'
+rework = require 'gulp-rework'
+reworkNPM = require 'rework-npm'
+cleanCSS = require 'gulp-clean-css'
 templateCache = require 'gulp-angular-templatecache'
+whitespace = require 'gulp-css-whitespace'
+del = require 'del'
 
 gulp.task 'default', ['css', 'template', 'coffee']
 
@@ -20,19 +25,17 @@ gulp.task 'css', ->
     gulp.src ['./scss/ionic.app.scss']
       .pipe sass()
       .pipe concat 'scss-files.scss'
-    gulp.src [
-        './www/lib/angular-xeditable/dist/css/xeditable.css'
-        './www/lib/ng-sortable/dist/ng-sortable.css'
-        './www/lib/ng-sortable/dist/ng-sortable.style.css'
-      ]
+    gulp.src 'www/css/index.css'
+      .pipe whitespace()
+      .pipe rework reworkNPM shim: 'angularjs-toaster': 'toaster.css'
       .pipe concat 'css-files.css'
   ]
   merge objectMode: true, lessAll, cssAll, scssAll
     .pipe concat 'ionic.app.css'
-    .pipe gulp.dest './www/css/'
-    .pipe minify()
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe gulp.dest 'www/css/'
+    .pipe cleanCSS()
+    .pipe rename extname: '.min.css'
+    .pipe gulp.dest 'www/css/'
 
 gulp.task 'coffee', ->
   browserify(entries: ['./www/js/index.coffee'])
@@ -46,3 +49,11 @@ gulp.task 'template', ->
   gulp.src('./www/templates/**/*.html')
     .pipe(templateCache(root: 'templates', standalone: true))
     .pipe(gulp.dest('./www/js/'))
+
+gulp.task 'clean', ->
+  del [
+    'www/css/ionic.app.css'
+    'www/css/ionic.app.min.css'
+    'node_modules'
+    'www/lib'
+  ]

@@ -2,11 +2,39 @@ require 'angular-activerecord'
 _ = require 'lodash'
 
 angular.module 'starter.model', ['ActiveRecord']
-  .factory 'resource', (ActiveRecord) ->
+  .factory 'resource', (ActiveRecord, $log) ->
+    sync = ActiveRecord.sync
+    ActiveRecord.sync = (op, model, opts) ->
+      sync op, model, opts
+        .catch (err) ->
+          msg = "#{err.status}: #{err.statusText}"
+          $log.error msg
+          Promise.reject msg
+ 
     class Model extends ActiveRecord
+      org: {}
+
       constructor: (attrs = {}, opts = {}) ->
         @$initialize attrs, opts
+        @backup()
 
+      # keep existing values in org
+      backup: ->
+        _.extend @org, _.omit(@, 'org')
+
+      # restore org values to exsiting values
+      restore: ->
+        _.extend @, @org
+
+      $save: (values, opts) ->
+        super values, opts
+          .then (model) =>
+            @backup()
+            model
+          .catch (err) =>
+            @restore()
+            Promise.reject err
+      
     class User extends Model
       $idAttribute: 'email'
 
@@ -25,9 +53,7 @@ angular.module 'starter.model', ['ActiveRecord']
 
       $urlRoot: 'upstream'
 
-      @reorder = (apps) ->
-        upstreams = _.map apps, (app) ->
-          app.id
+      @reorder = (upstreams) ->
         ActiveRecord
           .sync 'update', {},
             url: 'upstream/reorder'

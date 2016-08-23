@@ -27,7 +27,7 @@ services:
     container_name: sails_proxy
     hostname: sails_proxy
     ports:
-      - 1337:1337
+      - 1337
     env_file: .env
     environment:
       NODE_ENV: development

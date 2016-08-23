@@ -3,7 +3,7 @@ path = require 'path'
 require './model.coffee'
 
 angular.module 'starter.controller', ['starter.model', 'ionic']
-  .controller 'UpstreamsCtrl', ($scope, $log, resource) ->
+  .controller 'UpstreamsCtrl', ($scope, resource) ->
     collection = []
     resource.Upstream.fetchAll()
       .then (res) ->
@@ -13,36 +13,42 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
        create: ->
          upstream = new resource.Upstream
            prefix: '/prefix'
-           target: 'http://target:80'
+           target: 'http://echo:1338'
          upstream
            .$save()
            .then ->
              collection.push upstream
-           .catch $log.error
        drag:
-         itemMoved: (event) ->
-           return true
          orderChanged: (event) ->
-           _.remove $scope.collection, (model) ->
-             model.id == event.source.itemScope.model.id
-           $scope.collection.splice event.dest.index, 0, event.source.itemScope.model
+           itemScope = event.source.itemScope
+           sortableScope = event.dest.sortableScope
+           selected = itemScope.model
+
+           neworder = _.map $scope.collection, (model) ->
+             model.id
+           _.remove neworder, (id) ->
+             id == selected.id
+           neworder.splice event.dest.index, 0, selected.id
+
            resource.Upstream
-             .reorder $scope.collection
+             .reorder neworder
              .then (upstreams) ->
                $scope.collection.length = 0
                $scope.collection.push upstreams...
-             .catch $log.error
-         containment: 'ion-view'
+             .catch ->
+               sortableScope.removeItem event.dest.index
+               itemScope.sortableScope.insertItem event.source.index, selected
+         containment: 'ion-content'
 
-  .controller 'UpstreamCtrl', ($scope, $log) ->
+  .controller 'UpstreamCtrl', ($scope) ->
     _.extend $scope,
       update: (values) ->
         $scope.model
           .$save values
           .then ->
             return true
-          .catch (err) ->
-            err.toString()
+          .catch ->
+            return false
       destroy: ->
         id = $scope.model.id
         $scope.model
@@ -50,4 +56,3 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
           .then ->
             _.remove $scope.collection, (model) ->
               model.id == id
-          .catch $log.error
