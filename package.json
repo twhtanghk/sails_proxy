@@ -23,17 +23,8 @@
   "homepage": "https://github.com/twhtanghk/sails_proxy#readme",
   "dependencies": {
     "bower": "^1.7.9",
-    "http-proxy-middleware": "^0.17.0",
-    "lodash": "^4.15.0",
-    "log_toast": "0.0.3",
-    "sails": "^0.12.4",
-    "sails-hook-requestlogger-file": "^2.0.5",
-    "sails-mongo": "^0.12.1"
-  },
-  "devDependencies": {
     "browserify": "^13.1.0",
     "coffeeify": "^2.0.1",
-    "css-whitespace": "^1.1.1",
     "debowerify": "^1.5.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -48,11 +39,19 @@
     "gulp-sass": "^2.3.2",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
-    "mocha": "^3.0.2",
+    "http-proxy-middleware": "^0.17.0",
+    "lodash": "^4.15.0",
+    "log_toast": "0.0.3",
     "rework-npm": "^1.0.0",
+    "sails": "^0.12.4",
+    "sails-hook-requestlogger-file": "^2.0.5",
+    "sails-mongo": "^0.12.1",
     "streamqueue": "^1.1.1",
-    "supertest": "^2.0.0",
-    "supertest-as-promised": "^3.2.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2",
+    "supertest": "^2.0.0",
+    "supertest-as-promised": "^3.2.0"
   }
 }
