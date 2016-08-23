@@ -1,6 +1,6 @@
 {
   "name": "sails_proxy",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Reverse proxy with rest API runtime configuration",
   "main": "app.js",
   "bin": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/twhtanghk/sails_proxy#readme",
   "dependencies": {
+    "bower": "^1.7.9",
     "http-proxy-middleware": "^0.17.0",
     "lodash": "^4.15.0",
     "log_toast": "0.0.3",
@@ -30,7 +31,6 @@
     "sails-mongo": "^0.12.1"
   },
   "devDependencies": {
-    "bower": "^1.7.9",
     "browserify": "^13.1.0",
     "coffeeify": "^2.0.1",
     "css-whitespace": "^1.1.1",
