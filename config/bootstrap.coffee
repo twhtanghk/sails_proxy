@@ -1,4 +1,6 @@
-_ = require 'lodash'
+[ 'echoPrefix', 'echoTarget' ].map (name) ->
+  if not (name of process.env)
+    throw new Error "process.env.#{name} not yet defined"
 
 module.exports =
   bootstrap: (cb) ->
@@ -10,9 +12,5 @@ module.exports =
         order: 0
         createdBy: sails.config.admin[0]
       .then ->
-        # reload proxy settings and initialize proxy
-        sails.models.upstream.reload()
-      .then ->
-        sails.log.info _.pick(sails.config, 'proxy', 'admin', 'port')
         cb()
       .catch cb

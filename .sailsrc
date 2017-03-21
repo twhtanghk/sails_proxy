@@ -9,6 +9,10 @@
     "csrf": false,
     "pubsub": false,
     "session": false,
-    "cors": false
+    "cors": false,
+    "views": false
+  },
+  "paths": {
+    "public": "www"
   }
 }
