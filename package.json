@@ -23,25 +23,25 @@
   "homepage": "https://github.com/twhtanghk/sails_proxy#readme",
   "dependencies": {
     "bower": "^1.7.9",
-    "browserify": "^13.1.0",
+    "browserify": "^14.1.0",
     "coffeeify": "^2.0.1",
     "debowerify": "^1.5.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
-    "gulp-clean-css": "^2.0.12",
+    "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.0",
     "gulp-css-whitespace": "^0.1.2",
     "gulp-less": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-rework": "^1.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.1.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "http-proxy-middleware": "^0.17.0",
     "lodash": "^4.15.0",
-    "log_toast": "0.0.3",
+    "log_toast": "0.0.6",
     "rework-npm": "^1.0.0",
     "sails": "^0.12.4",
     "sails-hook-requestlogger-file": "^2.0.5",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "mocha": "^3.0.2",
-    "supertest": "^2.0.0",
-    "supertest-as-promised": "^3.2.0"
+    "supertest": "^3.0.0",
+    "supertest-as-promised": "^4.0.2"
   }
 }
