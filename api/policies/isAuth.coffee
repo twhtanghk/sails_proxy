@@ -1,5 +1,5 @@
 module.exports = (req, res, next) ->
-  if sails.config.isAuth req
+  if req.headers['x-forwarded-email']?
     next()
   else
     res.forbidden()
