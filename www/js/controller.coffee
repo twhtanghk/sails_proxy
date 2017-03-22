@@ -11,9 +11,7 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
     _.extend $scope, 
        collection: collection
        create: ->
-         upstream = new resource.Upstream
-           prefix: '/prefix'
-           target: 'http://echo:1338'
+         upstream = new resource.Upstream()
          upstream
            .$save()
            .then ->
