@@ -8,10 +8,11 @@ module.exports =
     prefix:
       type: 'string'
       required: true
-      unique: true
+      defaultsTo: '/prefix'
     target:
       type: 'string'
       required: true
+      defaultsTo: 'http://echo'
     order:
       type: 'integer'
       required: true
