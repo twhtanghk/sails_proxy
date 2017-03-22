@@ -29,7 +29,7 @@ gulp.task 'css', ->
       .pipe concat 'scss-files.scss'
     gulp.src 'www/css/index.css'
       .pipe whitespace()
-      .pipe rework reworkNPM shim: 'angularjs-toaster': 'toaster.css'
+      .pipe rework reworkNPM shim: 'angular-toastr': 'dist/angular-toastr.css'
       .pipe concat 'css-files.css'
   ]
   merge objectMode: true, lessAll, cssAll, scssAll
