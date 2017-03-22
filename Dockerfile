@@ -1,8 +1,19 @@
-FROM	node
+FROM node
 
-ENV VERSION 0.0.10
-RUN	npm config set user root && \
-	npm install sails_proxy@${VERSION} -g
-EXPOSE	1337
+ENV VER=${VER:-master} \
+    REPO=https://github.com/twhtanghk/sails_proxy \
+    APP=/usr/src/app
 
-CMD sails_proxy
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get clean && \
+    git clone -b $VER $REPO $APP
+
+WORKDIR $APP
+
+RUN npm install && \
+    node_modules/.bin/bower install --allow-root
+	
+EXPOSE 1337
+
+ENTRYPOINT ./entrypoint.sh
