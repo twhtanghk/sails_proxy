@@ -1,7 +1,7 @@
 _ = require 'lodash'
 
-_.defaults process.env,
-  admin: 'admin@mob.myvnc.com'
+if not ('admin' of process.env)
+  throw new Error 'process.env.admin not yet defined'
 
 module.exports =
   admin: _.split process.env.admin, ','
