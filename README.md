@@ -1,42 +1,17 @@
 # sails_proxy
-Reverse proxy with rest API runtime configuration
+Reverse http proxy with rest API runtime configuration
 
 ## Configuration
 
 1. Configured by environment variables in [.env](https://github.com/twhtanghk/sails_proxy/blob/master/.env)
-2. Assume default upstream [echo](http://github.com/solsson/docker-http-echo) on http://echo:1338
+2. Assume default upstream [echo](http://github.com/solsson/docker-http-echo) on http://echo
 
 ## Start sails_proxy
-### run as node application
-1. create config files '.env' and 'upstream.coffee' if required
-2. update environment variables defined in .env
-3. update proxy settings defined in upstream.coffee if required
-4. setup mongo database server with default host proxy_mongo and port 27017
-```
-npm config set user root # if run by docker
-npm install sails_proxy -g
-set -a; . .env; set +a
-env NODE_ENV=development sails_proxy
-```
-### run docker image
-1. create config files '.env' and 'upstream.coffee' if required
-2. update environment variables defined in .env
-3. update proxy settings defined in upstream.coffee if required
-4. setup mongo database server with default host proxy_mongo and port 27017
-```
-docker run --name sails_proxy --env-file .env -p 1337:1337 -v /path/upstream.coffee:/usr/src/app/config/env/upstream.coffee -d twhtanghk/sails_proxy
-```
-
 ### run by docker compose (preferred way to start required services mongo, echo, sails_proxy)
-1. create config files '.env' and 'upstream.coffee' if required
-2. update environment variables defined in .env
-3. update proxy settings defined in upstream.coffee if required
-4. update docker-compose.yml if required
+1. download '.env' and customize env variables if required
+2. update docker-compose.yml if required
 ```
 docker-compose -f docker-compose.yml up
-
-# remove environment variable NODE_ENV=development defined in docker-compose.yml to start services with oauth2 protection
-```
 
 ## API
 1. [upstream data](https://github.com/twhtanghk/sails_proxy/blob/master/api/models/Upstream.coffee)
@@ -49,7 +24,7 @@ docker-compose -f docker-compose.yml up
 ## Usage
 1. browse http://host:1337 to view defined upstream apps
 2. press New button to create upstream apps
-3. press /prefix or http://target:80 to update upstream details
+3. press /prefix or http://echo to update upstream details
 4. drag and drop the upstream apps to redefine the upstream apps order
 5. swipe left and press Delete button to delete the upstream app
 6. browse http://host:1337/echo/test to view proxy request details for the default echo app
