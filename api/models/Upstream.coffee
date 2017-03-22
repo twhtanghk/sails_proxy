@@ -62,7 +62,7 @@ module.exports =
     @find()
       .max 'order'
       .then (res) ->
-        values.order ?= res[0].order + 1
+        values.order ?= if res.length == 0 then 0 else res[0].order + 1
         cb()
       .catch cb
 
