@@ -1,3 +1,6 @@
+_ = require 'lodash'
+fs = require 'fs'
+util = require 'util'
 gulp = require 'gulp'
 bower = require 'bower'
 sass = require 'gulp-sass'
@@ -19,6 +22,10 @@ del = require 'del'
 
 gulp.task 'default', ['css', 'template', 'coffee']
 
+gulp.task 'config', ->
+  params = _.pick process.env, 'ROOTURL', 'AUTHURL', 'CLIENT_ID', 'SCOPE'
+  fs.writeFileSync 'www/js/config.json', util.inspect(params)
+
 gulp.task 'css', ->
   [lessAll, scssAll, cssAll] = [
     gulp.src ['./scss/bootstrap.less']
@@ -39,7 +46,7 @@ gulp.task 'css', ->
     .pipe rename extname: '.min.css'
     .pipe gulp.dest 'www/css/'
 
-gulp.task 'coffee', ->
+gulp.task 'coffee', ['config'], ->
   browserify(entries: ['./www/js/index.coffee'])
     .transform 'coffeeify'
     .transform 'debowerify'

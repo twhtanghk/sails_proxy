@@ -3,7 +3,7 @@ path = require 'path'
 require './model.coffee'
 
 angular.module 'starter.controller', ['starter.model', 'ionic']
-  .controller 'UpstreamsCtrl', ($scope, resource) ->
+  .controller 'UpstreamsCtrl', ($scope, $log, resource) ->
     collection = []
     resource.Upstream.fetchAll()
       .then (res) ->
@@ -16,6 +16,7 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
            .$save()
            .then ->
              collection.push upstream
+           .catch $log.error
        drag:
          orderChanged: (event) ->
            itemScope = event.source.itemScope
@@ -38,7 +39,7 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
                itemScope.sortableScope.insertItem event.source.index, selected
          containment: 'ion-content'
 
-  .controller 'UpstreamCtrl', ($scope) ->
+  .controller 'UpstreamCtrl', ($scope, $log) ->
     _.extend $scope,
       update: (values) ->
         $scope.model
@@ -54,3 +55,4 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
           .then ->
             _.remove $scope.collection, (model) ->
               model.id == id
+          .catch $log.error

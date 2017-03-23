@@ -17,10 +17,10 @@ module.exports =
       type: 'integer'
       required: true
     createdBy:
-      type: 'email'
+      model: 'user'
       required: true
     updatedBy:
-      type: 'email'
+      model: 'user'
 
   # convert [upstream...] to { prefix1: target1, prefix2: target2, ... }
   toRouter: (upstreams) ->

@@ -5,10 +5,7 @@
   "hooks": {
     "grunt": false,
     "i18n": false,
-    "sockets": false,
     "csrf": false,
-    "pubsub": false,
-    "session": false,
     "cors": false,
     "views": false
   },

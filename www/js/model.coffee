@@ -3,14 +3,7 @@ _ = require 'lodash'
 
 angular.module 'starter.model', ['ActiveRecord']
   .factory 'resource', (ActiveRecord, $log) ->
-    sync = ActiveRecord.sync
-    ActiveRecord.sync = (op, model, opts) ->
-      sync op, model, opts
-        .catch (err) ->
-          msg = "#{err.status}: #{err.statusText}"
-          $log.error msg
-          Promise.reject msg
- 
+
     class Model extends ActiveRecord
       org: {}
 
