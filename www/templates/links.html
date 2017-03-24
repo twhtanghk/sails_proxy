@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-item
+    class="item-avatar item-complex"
+    ng-click="model.go()"
+    ng-repeat="model in collection" 
+    ng-include="'templates/link.html'"
+    ng-controller="UpstreamCtrl">
+  </ion-item>
+</ion-list>

@@ -4,24 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <link href="css/ionic.app.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="js/index.js"></script>
   </head>
   <body ng-app="starter">
     <toaster-container></toaster-container>
-    <ion-view ng-controller="UpstreamsCtrl">
+    <div ng-controller="UpstreamsCtrl">
       <ion-header-bar class='bar-positive'>
+        <button 
+          class="button button-clear ion-chevron-left" 
+          ng-click="readMode()"
+          ng-if="! readOnly">
+        </button>
         <h1 class='title'>Upstream Apps</h1>
         <button 
-          class="button button-light ion-plus-circled" 
-          ng-click="create()">
-          New
+          class="button button-clear ion-gear-a" 
+          ng-click="updateMode()"
+          ng-if="readOnly">
+        </button>
+        <button 
+          class="button button-clear ion-plus-circled" 
+          ng-click="create()"
+          ng-if="! readOnly">
         </button>
       </ion-header-bar>
-      <ion-content class="has-header">
-        <ng-include src="'templates/collection.html'"
+      <ion-content>
+        <ng-include
+          src="readOnly ? 'templates/links.html' : 'templates/collection.html'">
+        </ng-include>
       </ion-content>
-    <ion-view>
+    </div>
   </body>
 </html>

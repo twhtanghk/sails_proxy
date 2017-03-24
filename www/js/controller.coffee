@@ -10,6 +10,11 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
         _.merge collection, res
     _.extend $scope, 
        collection: collection
+       readOnly: true
+       readMode: ->
+         $scope.readOnly = true
+       updateMode: ->
+         $scope.readOnly = false
        create: ->
          upstream = new resource.Upstream()
          upstream

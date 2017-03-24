@@ -2,7 +2,7 @@ require 'angular-activerecord'
 _ = require 'lodash'
 
 angular.module 'starter.model', ['ActiveRecord']
-  .factory 'resource', (ActiveRecord, $log) ->
+  .factory 'resource', (ActiveRecord, $window, $log) ->
 
     class Model extends ActiveRecord
       org: {}
@@ -45,6 +45,13 @@ angular.module 'starter.model', ['ActiveRecord']
       $idAttribue: 'prefix'
 
       $urlRoot: 'upstream'
+
+      go: ->
+        $window.open @prefix.replace(/^\/|\/$/g, ''), '_blank'
+        return false
+
+      detail: ->
+        JSON.stringify _.pick(@, 'target')
 
       @reorder = (upstreams) ->
         ActiveRecord
