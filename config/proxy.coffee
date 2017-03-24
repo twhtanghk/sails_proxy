@@ -5,6 +5,7 @@
 module.exports =
   proxy:
     target: '.*'
+    ws: true
     xfwd: process.env.xfwd == 'true'
     prependPath: process.env.prependPath == 'true'
     ignorePath: process.env.ignorePath == 'true'
