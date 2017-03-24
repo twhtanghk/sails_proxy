@@ -5,4 +5,6 @@
 module.exports =
   bootstrap: (done) ->
     sails.io.of require('url').parse(process.env.ROOTURL).pathname
-    done()
+    sails.models.upstream.reload()
+      .then done
+      .catch done
