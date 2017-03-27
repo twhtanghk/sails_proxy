@@ -38,14 +38,7 @@ module.exports =
 
   # return http-proxy-middleware instance with existing saved upstream settings
   middleware: (req, res, next) ->
-    # check if url matched any path defined in sails.config.proxy.router
-    matched = _.some _.keys(@router), (pattern) ->
-      new RegExp "^#{pattern}"
-        .test req.url
-    if matched
-      @proxy req, res, next
-    else
-      next()
+    @proxy req, res, next
 
   # reload router settings
   reload: ->
