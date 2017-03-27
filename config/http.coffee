@@ -4,7 +4,6 @@ module.exports =
       proxy: (req, res, next) ->
         sails.models.upstream.middleware req, res, next
       order: [
-        'bodyParser'
         'compress'
         'router'
         'www'

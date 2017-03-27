@@ -4,6 +4,6 @@ module.exports =
       '*': false
       'find': true
       'create': ['isAuth', 'isAdmin', 'setCreatedBy']
-      'update': ['isAuth', 'isAdmin', 'setUpdatedBy']
+      'update': ['isAuth', 'isAdmin', 'setUpdatedBy', 'bodyparser']
       'destroy': ['isAuth', 'isAdmin']
-      'reorder': ['isAuth', 'isAdmin', 'setUpdatedBy']
+      'reorder': ['isAuth', 'isAdmin', 'setUpdatedBy', 'bodyparser']
