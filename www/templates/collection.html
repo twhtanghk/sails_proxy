@@ -1,9 +1,10 @@
 <ion-list
   data-as-sortable="drag"
   data-ng-model="collection">
-  <ng-repeat
+  <ion-item as-sortable-item
+    ng-init="itemScope = this"
     ng-repeat="model in collection" 
     ng-include="'templates/model.html'"
     ng-controller="UpstreamCtrl">
-  </ng-repeat>
+  </ion-item>
 </ion-list>
