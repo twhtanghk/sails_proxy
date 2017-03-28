@@ -1,5 +1,6 @@
-<div class="row" as-sortable-item-handle>
-  <span class="col-33">
+<div class='item-content'>
+  <img class="app" src='img/favicon.png'>
+  <h2>
     <span
       data-tap-disabled="true"
       editable-text="model.prefix" 
@@ -7,8 +8,8 @@
       onbeforesave="update({prefix: $data})">
       {{model.prefix}}
     </span>
-  </span>
-  <span class="col-67">
+  </h2>
+  <p>
     <span
       data-tap-disabled="true"
       editable-text="model.target" 
@@ -16,7 +17,7 @@
       onbeforesave="update({target: $data})">
       {{model.target}}
     </span>
-  </span>
+  </p>
 </div>
 <ion-option-button 
   class="button button-assertive icon-left ion-trash-a" 
