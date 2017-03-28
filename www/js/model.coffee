@@ -47,7 +47,7 @@ angular.module 'starter.model', ['ActiveRecord']
       $urlRoot: 'upstream'
 
       go: ->
-        $window.open @prefix.replace(/^\/|\/$/g, ''), '_blank'
+        $window.open @prefix.replace(/^\//g, ''), '_blank'
         return false
 
       detail: ->
