@@ -1,5 +1,8 @@
 <div class='item-content'>
-  <img class="app" src='img/favicon.png'>
+  <img class="app cursor" ng-src="{{model.img || 'img/favicon.png'}}" onclick="document.getElementById('fileUpload').click()">
+  <div class="fileUpload">
+    <input type="file" class="upload" id="fileUpload" />
+  </div>
   <h2>
     <span
       data-tap-disabled="true"

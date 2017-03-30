@@ -67,3 +67,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 img.app {
   border-radius: 0 !important;
 }
+  
+img.cursor{
+  cursor: pointer;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
