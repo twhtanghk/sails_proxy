@@ -40,7 +40,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
-    "http-proxy-middleware": "^0.17.0",
+    "http-proxy-middleware": "https://github.com/twhtanghk/http-proxy-middleware",
     "jquery": "^3.2.1",
     "jquery-deparam": "^0.5.3",
     "lodash": "^4.15.0",
