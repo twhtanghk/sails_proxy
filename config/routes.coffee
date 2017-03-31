@@ -20,3 +20,7 @@ module.exports =
     'DELETE /upstream/:id':
       controller: 'Upstream'
       action: 'destroy' 
+
+     'GET /upstream/photo/:id':
+      controller: 'Upstream'
+      action: 'getPhoto'  
