@@ -23,7 +23,7 @@ del = require 'del'
 gulp.task 'default', ['css', 'template', 'coffee']
 
 gulp.task 'config', ->
-  params = _.pick process.env, 'ROOTURL', 'AUTHURL', 'CLIENT_ID', 'SCOPE'
+  params = _.pick process.env, 'AUTHURL', 'CLIENT_ID', 'SCOPE'
   fs.writeFileSync 'www/js/config.json', util.inspect(params)
 
 gulp.task 'css', ->

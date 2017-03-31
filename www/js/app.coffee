@@ -9,11 +9,13 @@ require 'log_toast'
 require './templates'
 require 'sails-auth'
 require 'util.auth'
+url = require 'url'
 env = require './config.json'
+path = url.parse(window.location.href).pathname
 window.io = require('sails.io.js')(require('socket.io-client'))
 _.extend window.io.sails,
-  url: env.ROOTURL
-  path: "#{url.parse(env.ROOTURL).pathname}/socket.io"
+  url: path
+  path: require('path').join path, "socket.io"
 
 angular
   .module 'starter', [
