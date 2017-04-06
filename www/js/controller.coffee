@@ -61,11 +61,14 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
             _.remove $scope.collection, (model) ->
               model.id == id
           .catch $log.error
+      fileUpload: ->
+          document.getElementById("fileUpload_#{$scope.model.id}").click()
       select: (files) ->
         if files?.length != 0
-          $scope.$emit 'cropImg', URL.createObjectURL(files[0])
+          $scope.$emit 'cropImg', URL.createObjectURL(files[0]), $scope.$id
 
-    $scope.$on 'cropImg.completed', (event, outImg) ->
-      $scope.model
-        .$save photo: outImg
-        .catch $log.error 
+    $scope.$on 'cropImg.completed', (event, outImg, id) ->
+      if $scope.$id == id
+        $scope.model
+          .$save photo: outImg
+          .catch $log.error 

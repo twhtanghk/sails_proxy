@@ -39,13 +39,13 @@ angular
 
   # image crop
   .run ($rootScope, $ionicModal) ->
-    $rootScope.$on 'cropImg', (event, inImg) ->
+    $rootScope.$on 'cropImg', (event, inImg, id) ->
       _.extend $rootScope,
         model:
           inImg: inImg
           outImg: ''
         confirm: ->
-          $rootScope.$broadcast 'cropImg.completed', $rootScope.model.outImg
+          $rootScope.$broadcast 'cropImg.completed', $rootScope.model.outImg, id
           $rootScope.modal?.remove()
       $ionicModal.fromTemplateUrl 'templates/img/crop.html', scope: $rootScope
         .then (modal) ->
