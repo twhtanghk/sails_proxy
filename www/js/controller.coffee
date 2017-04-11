@@ -61,8 +61,6 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
             _.remove $scope.collection, (model) ->
               model.id == id
           .catch $log.error
-      fileUpload: ->
-          document.getElementById("fileUpload_#{$scope.model.id}").click()
       select: (files) ->
         if files?.length != 0
           $scope.$emit 'cropImg', URL.createObjectURL(files[0]), $scope.$id

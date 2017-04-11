@@ -70,20 +70,24 @@ $msg-color: #f5f5f5;
 img.app {
   border-radius: 0 !important;
 }
+
+input[type='file'] {
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  top: 16px;
+  left: 16px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  max-height: 40px;
+  max-width: 40px;
+}
   
 img.cursor{
   cursor: pointer;
-}
-
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-}
-
-.fileUpload input.upload {
-    position: absolute;
-    width: 0;
-    height: 0;
 }
 
 .cropArea {

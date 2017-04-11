@@ -1,9 +1,8 @@
 <div class='item-content'>
-  <img class="app cursor" ng-src="{{model.photoUrl || 'img/favicon.png'}}" ng-click="fileUpload()">
-  <div class="fileUpload">
-    <input type="file" class="upload" id="fileUpload_{{model.id}}" accept="image/*"
-        onchange="angular.element(this).scope().select(event.target.files)" />
-  </div>
+  <img class="app" ng-src="{{model.photoUrl || 'img/favicon.png'}}">
+  <input type="file" 
+    accept="image/*"
+    onchange="angular.element(this).scope().select(event.target.files)">
   <h2>
     <span
       data-tap-disabled="true"
