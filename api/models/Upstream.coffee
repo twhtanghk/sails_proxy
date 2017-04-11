@@ -1,4 +1,6 @@
 _ = require 'lodash'
+url = require 'url'
+httpProxy = require 'http-proxy-middleware'
 
 module.exports =
   tableName: 'upstream'
@@ -29,11 +31,19 @@ module.exports =
       ret[upstream.prefix] = upstream.target
     return ret
     
-  # convert [upstream...] to { ^prefix1: /, ^prefix2: /, ... }
+  # convert [upstream...] to { ^prefix1: /target1, ^prefix2: /target2, ... }
   toPathRewrite: (upstreams) ->
     ret = {}
     _.each upstreams, (upstream) ->
-      ret["^#{upstream.prefix}"] = '/'
+      ret["^#{upstream.prefix}"] = url.parse(upstream.target).pathname
+    return ret
+
+  # convert [upstream...] to wsProxy
+  toWsProxy: (upstreams) ->
+    ret = {}
+    _.each upstreams, (upstream) ->
+      target = _.extend url.parse upstream.target, protocol: 'ws'
+      ret[upstream.prefix] = httpProxy url.format target
     return ret
 
   # return http-proxy-middleware instance with existing saved upstream settings
@@ -49,7 +59,8 @@ module.exports =
         _.extend sails.config.proxy, router: @router,
         if not sails.config.proxy.prependPath
           _.extend sails.config.proxy, pathRewrite: @toPathRewrite upstreams
-        @proxy = require('http-proxy-middleware') sails.config.proxy
+        @proxy = httpProxy sails.config.proxy
+        @wsProxy = @toWsProxy upstreams
         sails.log.info "proxy reloaded"
     
   beforeValidate: (values, cb) ->
