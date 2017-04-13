@@ -2,6 +2,7 @@ _ = require 'lodash'
 url = require 'url'
 httpProxy = require 'http-proxy-middleware'
 
+
 module.exports =
   tableName: 'upstream'
   schema: true
@@ -15,6 +16,8 @@ module.exports =
       type: 'string'
       required: true
       defaultsTo: 'http://echo'
+    photo:
+      type: 'string'
     order:
       type: 'integer'
       required: true
@@ -23,6 +26,14 @@ module.exports =
       required: true
     updatedBy:
       model: 'user'
+    
+    photoUrl: ->
+      if @photo then "upstream/photo/#{@id}?m=#{@updatedAt}" else null
+
+    toJSON: ->
+      ret = _.extend @toObject(), photoUrl: @photoUrl()
+      delete ret.photo
+      return ret
 
   # convert [upstream...] to { prefix1: target1, prefix2: target2, ... }
   toRouter: (upstreams) ->
@@ -49,7 +60,7 @@ module.exports =
   # return http-proxy-middleware instance with existing saved upstream settings
   middleware: (req, res, next) ->
     @proxy req, res, next
-
+  
   # reload router settings
   reload: ->
     @find()

@@ -10,6 +10,7 @@ require './templates'
 require 'sails-auth'
 require 'util.auth'
 url = require 'url'
+require 'ngImgCrop'
 env = require './config.json'
 window.io = require('sails.io.js')(require('socket.io-client'))
 
@@ -23,6 +24,7 @@ angular
     'logToast'
     'http-auth-interceptor'
     'util.auth'
+    'ngImgCrop'
   ]
   .run ($rootScope, $location) ->
     _.extend $rootScope, pathname: url.parse(window.location.href).pathname
@@ -34,3 +36,18 @@ angular
       client_id: env.CLIENT_ID
       scope: env.SCOPE
       response_type: 'token'
+
+  # image crop
+  .run ($rootScope, $ionicModal) ->
+    $rootScope.$on 'cropImg', (event, inImg, id) ->
+      _.extend $rootScope,
+        model:
+          inImg: inImg
+          outImg: ''
+        confirm: ->
+          $rootScope.$broadcast 'cropImg.completed', $rootScope.model.outImg, id
+          $rootScope.modal?.remove()
+      $ionicModal.fromTemplateUrl 'templates/img/crop.html', scope: $rootScope
+        .then (modal) ->
+          modal.show()
+          $rootScope.modal = modal

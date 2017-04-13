@@ -1,5 +1,5 @@
 <div class='item-content'>
-  <img class="app" src='img/favicon.png'>
+  <img class="app" ng-src="{{model.photoUrl || 'img/favicon.png'}}">
   <h2>{{model.prefix}}</h2>
-  <p>{{model.detail()}}</p>
+  <p>{{model.target}}</p>
 </div>

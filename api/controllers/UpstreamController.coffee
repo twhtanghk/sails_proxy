@@ -23,3 +23,16 @@ module.exports =
               .then ->
                 app
       .then res.ok, res.serverError
+
+  getPhoto: (req, res) ->
+    pk = actionUtil.requirePk(req)
+    Model = actionUtil.parseModel(req)
+    sails.services.file.get(Model, pk, 'photo')
+      .then (data) ->
+        if data
+          [data, type, content] = data.match(/^data:(.+);base64,(.*)$/)
+          res.set('Content-Type', type)
+          res.send(200, new Buffer(content, 'base64'))
+        else
+          res.ok()
+      .catch res.serverError
