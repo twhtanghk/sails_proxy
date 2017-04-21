@@ -14,12 +14,15 @@
     </span>
   </h2>
   <p>
-    <span
-      data-tap-disabled="true"
-      editable-text="model.target" 
-      buttons="no"
-      onbeforesave="update({target: $data})">
-      {{model.target}}
+    <span ng-repeat="attr in ['name', 'target']">
+      {{attr}}:
+      <span
+        data-tap-disabled="true"
+        editable-text="model[attr]" 
+        buttons="no"
+        onbeforesave="update(attr, $data)">
+        {{model[attr] || 'blank'}}
+      </span>
     </span>
   </p>
 </div>

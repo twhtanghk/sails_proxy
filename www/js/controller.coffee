@@ -46,9 +46,11 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
 
   .controller 'UpstreamCtrl', ($scope, $log) ->
     _.extend $scope,
-      update: (values) ->
+      update: (attr, value) ->
+        map = {}
+        map[attr] = value
         $scope.model
-          .$save values
+          .$save map
           .then ->
             return true
           .catch ->

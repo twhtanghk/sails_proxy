@@ -8,6 +8,10 @@ module.exports =
   schema: true
   autoPK: true
   attributes:
+    name:
+      type: 'string'
+      required: 'true'
+      defaultsTo: 'echo'
     prefix:
       type: 'string'
       required: true
@@ -15,6 +19,7 @@ module.exports =
     target:
       type: 'string'
       required: true
+      url: true
       defaultsTo: 'http://echo'
     photo:
       type: 'string'

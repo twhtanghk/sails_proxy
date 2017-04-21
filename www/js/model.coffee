@@ -50,9 +50,6 @@ angular.module 'starter.model', ['ActiveRecord']
         $window.open @prefix.replace(/^\//g, ''), '_blank'
         return false
 
-      detail: ->
-        JSON.stringify _.pick(@, 'target')
-
       @reorder = (upstreams) ->
         ActiveRecord
           .sync 'update', {},
