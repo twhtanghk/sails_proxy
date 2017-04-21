@@ -19,7 +19,10 @@ module.exports =
     target:
       type: 'string'
       required: true
-      url: true
+      url:
+        protocols: ['http']
+        require_tld: false
+        require_protocol: true
       defaultsTo: 'http://echo'
     photo:
       type: 'string'
