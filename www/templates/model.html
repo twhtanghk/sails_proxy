@@ -1,6 +1,7 @@
 <div class='item-content'>
   <img class="app" ng-src="{{model.photoUrl || 'img/favicon.png'}}">
   <input type="file" 
+    as-sortable-item-handle
     accept="image/*"
     onchange="angular.element(this).scope().select(event.target.files)">
   <h2>
