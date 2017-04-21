@@ -53,7 +53,8 @@ angular.module 'starter.controller', ['starter.model', 'ionic']
           .$save map
           .then ->
             return true
-          .catch ->
+          .catch (err) ->
+            $log.error err.data.message
             return false
       destroy: ->
         id = $scope.model.id
