@@ -25,6 +25,6 @@ docker-compose -f docker-compose.yml up
 1. browse http://host:1337 to view defined upstream apps
 2. press New button to create upstream apps
 3. press /prefix or http://echo to update upstream details
-4. drag and drop the upstream apps to redefine the upstream apps order
+4. drag and drop **icon of the upstream apps** to redefine the upstream apps order
 5. swipe left and press Delete button to delete the upstream app
 6. browse http://host:1337/echo/test to view proxy request details for the default echo app
