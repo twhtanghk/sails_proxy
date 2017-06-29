@@ -1,13 +1,10 @@
-FROM node
+FROM node:6
 
 ENV VER=${VER:-master} \
     REPO=https://github.com/twhtanghk/sails_proxy \
     APP=/usr/src/app
 
-RUN apt-get update && \
-    apt-get install -y git && \
-    apt-get clean && \
-    git clone -b $VER $REPO $APP
+RUN git clone -b $VER $REPO $APP
 
 WORKDIR $APP
 
