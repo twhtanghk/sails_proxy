@@ -5,9 +5,9 @@ module.exports =
         sails.models.upstream.middleware req, res, next
       order: [
         'compress'
+        'proxy'
         'router'
         'www'
-        'proxy'
         'favicon'
         '404'
         '500'

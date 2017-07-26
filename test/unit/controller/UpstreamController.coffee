@@ -10,7 +10,7 @@ describe 'UpstreamController', ->
       req sails.hooks.http.app 
         .post "/upstream"
         .set 'Content-Type', 'application/json'
-        .set 'x-forwarded-email', 'admin@mob.myvnc.com'
+        .set 'Authorization', "Bearer #{token}"
         .send prefix: "/#{app}", target: "http://#{app}.service.consul:1337"
         .expect 201
 
@@ -29,7 +29,7 @@ describe 'UpstreamController', ->
           req sails.hooks.http.app 
             .put "/upstream/#{app.id}"
             .set 'Content-Type', 'application/json'
-            .set 'x-forwarded-email', 'admin@mob.myvnc.com'
+            .set 'Authorization', "Bearer #{token}"
             .send 
                prefix: "#{app.prefix}_v2"
             .expect 200
@@ -49,7 +49,7 @@ describe 'UpstreamController', ->
           req sails.hooks.http.app
             .delete "/upstream/#{app.id}"
             .set 'Content-Type', 'application/json'
-            .set 'x-forwarded-email', 'admin@mob.myvnc.com'
+            .set 'Authorization', "Bearer #{token}"
             .send prefix: "/#{app}"
             .expect 200
 
