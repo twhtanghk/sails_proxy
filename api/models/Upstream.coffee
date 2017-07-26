@@ -67,7 +67,13 @@ module.exports =
 
   # return http-proxy-middleware instance with existing saved upstream settings
   middleware: (req, res, next) ->
-    @proxy req, res, next
+    paths = _.keys @router
+    matchedOne = _.some paths, (path) ->
+      req.url.match new RegExp "^#{path}"
+    if matchedOne
+      @proxy req, res, next
+    else
+      next()
   
   # reload router settings
   reload: ->
