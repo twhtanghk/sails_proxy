@@ -7,6 +7,7 @@
     "i18n": false,
     "csrf": false,
     "cors": false,
+    "session": false,
     "views": false
   },
   "paths": {
