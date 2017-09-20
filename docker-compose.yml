@@ -17,5 +17,7 @@ services:
     image: twhtanghk/sails_proxy
     ports:
       - 1337
+    volumes:
+      - ./production.coffee:/usr/src/app/config/env/production.coffee
     env_file: 
       - ../.env

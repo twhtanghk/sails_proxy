@@ -3,4 +3,4 @@ module.exports =
     mongo:
       adapter: 'sails-mongo'
       driver: 'mongodb'
-      url: 'mongodb://@mongo.service.consul:27017/proxy'
+      url: 'mongodb://@mongo:27017/proxy'
