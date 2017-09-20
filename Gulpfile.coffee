@@ -1,4 +1,5 @@
 _ = require 'lodash'
+_.defaults = require 'merge-defaults'
 fs = require 'fs'
 util = require 'util'
 gulp = require 'gulp'
@@ -19,12 +20,21 @@ cleanCSS = require 'gulp-clean-css'
 templateCache = require 'gulp-angular-templatecache'
 whitespace = require 'gulp-css-whitespace'
 del = require 'del'
+glob = require 'glob'
 
 gulp.task 'default', ['css', 'template', 'coffee']
 
 gulp.task 'config', ->
+  cfg = glob
+    .sync './config/*.coffee'
+    .concat glob.sync "./config/env/#{process.env.NODE_ENV}.coffee"
+    .reduce (cfg, file) ->
+      cfg = _.defaults require(file), cfg
   params = _.pick process.env, 'AUTHURL', 'CLIENT_ID', 'SCOPE'
-  fs.writeFileSync 'www/js/config.json', util.inspect(params)
+  fs.writeFileSync 'www/js/config.json', util.inspect
+    AUTHURL: cfg.oauth2.url.authorize
+    CLIENT_ID: cfg.oauth2.client.id
+    SCOPE: cfg.oauth2.scope
 
 gulp.task 'css', ->
   [lessAll, scssAll, cssAll] = [

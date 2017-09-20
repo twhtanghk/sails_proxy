@@ -13,4 +13,4 @@ RUN npm install && \
 	
 EXPOSE 1337
 
-ENTRYPOINT ./entrypoint.sh
+CMD npm start
