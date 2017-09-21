@@ -25,12 +25,12 @@ glob = require 'glob'
 gulp.task 'default', ['css', 'template', 'coffee']
 
 gulp.task 'config', ->
+  config = (cfg, file) ->
+    _.defaults cfg, require file
   cfg = glob
-    .sync './config/*.coffee'
-    .concat glob.sync "./config/env/#{process.env.NODE_ENV}.coffee"
-    .reduce (cfg, file) ->
-      cfg = _.defaults require(file), cfg
-  params = _.pick process.env, 'AUTHURL', 'CLIENT_ID', 'SCOPE'
+    .sync "./config/env/#{process.env.NODE_ENV}.coffee"
+    .concat glob.sync './config/*.coffee'
+    .reduce config, {}
   fs.writeFileSync 'www/js/config.json', util.inspect
     AUTHURL: cfg.oauth2.url.authorize
     CLIENT_ID: cfg.oauth2.client.id

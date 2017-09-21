@@ -7,7 +7,7 @@
     "sails_proxy": "./bin/sails_proxy"
   },
   "scripts": {
-    "prestart": "gulp",
+    "prestart": "NODE_ENV=production gulp",
     "start": "node app.js --prod",
     "test": "mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
   },
