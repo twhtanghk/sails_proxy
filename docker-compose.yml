@@ -1,11 +1,11 @@
 version: '2'
 services:
-  proxy_mongo:
+  mongo:
     image: mongo
     ports:
       - 27017
     volumes:
-      - ${COMPOSEROOT}/proxy/data:/data/db
+      - ./data:/data/db
     command: mongod --directoryperdb
 
   echo:
@@ -14,10 +14,10 @@ services:
       - 80
 
   sails_proxy:
-    depends_on:
-      - proxy_mongo
-      - echo
     image: twhtanghk/sails_proxy
     ports:
       - 1337
-    env_file: .env
+    volumes:
+      - ./production.coffee:/usr/src/app/config/env/production.coffee
+    env_file: 
+      - ../.env

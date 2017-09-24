@@ -7,9 +7,9 @@
     "sails_proxy": "./bin/sails_proxy"
   },
   "scripts": {
-    "postinstall": "bower install --allow-root && gulp",
-    "start": "bin/sails_proxy",
-    "test": "node_modules/.bin/mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
+    "prestart": "NODE_ENV=production gulp",
+    "start": "node app.js --prod",
+    "test": "mocha test/bootstrap.test.coffee test/unit/**/*.coffee"
   },
   "repository": {
     "type": "git",

@@ -23,6 +23,7 @@ module.exports =
         protocols: ['http']
         require_tld: false
         require_protocol: true
+        allow_underscores: true
       defaultsTo: 'http://echo'
     photo:
       type: 'string'
