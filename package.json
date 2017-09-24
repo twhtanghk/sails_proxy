@@ -1,6 +1,6 @@
 {
   "name": "sails_proxy",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Reverse proxy with rest API runtime configuration",
   "main": "app.js",
   "bin": {
