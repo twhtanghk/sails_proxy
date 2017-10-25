@@ -8,7 +8,7 @@ RUN git clone -b $VER $REPO $APP
 
 WORKDIR $APP
 
-RUN npm install && \
+RUN yarn install && \
     node_modules/.bin/bower install --allow-root
 	
 EXPOSE 1337
