@@ -13,4 +13,4 @@ RUN yarn install && \
 	
 EXPOSE 1337
 
-CMD npm start
+ENTRYPOINT ['node', 'app.js', '--prod']
