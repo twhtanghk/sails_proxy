@@ -2,9 +2,6 @@ module.exports =
   admin: [
     'admin@abc.com'
   ]
-  connections:
-    mongo:
-      url: 'mongodb://@mongo:27017/proxy'
   oauth2:
     url:
       authorize: 'https://abc.com/auth/oauth2/authorize/'
