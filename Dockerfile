@@ -13,4 +13,4 @@ RUN yarn install && \
 	
 EXPOSE 1337
 
-ENTRYPOINT ['node', 'app.js', '--prod']
+ENTRYPOINT ["node", "app.js", "--prod"]
