@@ -1,4 +1,4 @@
 module.exports =
   models:
-    connection: 'mongo'
+    connection: 'disk'
     migrate: 'safe'
