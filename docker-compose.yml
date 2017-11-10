@@ -1,13 +1,5 @@
 version: '2'
 services:
-  mongo:
-    image: mongo
-    ports:
-      - 27017
-    volumes:
-      - ./data:/data/db
-    command: mongod --directoryperdb
-
   echo:
     image: solsson/http-echo
     ports: 
@@ -18,6 +10,7 @@ services:
     ports:
       - 1337
     volumes:
+      - ./data:/usr/src/app/data
       - ./production.coffee:/usr/src/app/config/env/production.coffee
     env_file: 
       - ../.env
