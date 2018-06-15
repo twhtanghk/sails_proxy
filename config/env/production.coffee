@@ -1,14 +1,14 @@
 module.exports =
-  admin: [
+  admin: process.env.ADMIN?.split(',') || [
     'admin@abc.com'
   ]
   oauth2:
     url:
-      authorize: 'https://abc.com/auth/oauth2/authorize/'
-      verify: 'https://abc.com/auth/oauth2/verify/'
+      authorize: process.env.AUTHURL || 'https://abc.com/auth/oauth2/authorize/'
+      verify: prociess.env.VERIFYURL || 'https://abc.com/auth/oauth2/verify/'
       token: 'https://abc.com/auth/oauth2/token/'
     client:
-      id: 'client_id'
+      id: 'process.env.CLIENT_ID || client_id'
       secret: 'client_secret'
     user:
       id: 'user_id'
