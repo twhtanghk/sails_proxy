@@ -5,7 +5,7 @@ module.exports =
   oauth2:
     url:
       authorize: process.env.AUTHURL || 'https://abc.com/auth/oauth2/authorize/'
-      verify: prociess.env.VERIFYURL || 'https://abc.com/auth/oauth2/verify/'
+      verify: process.env.VERIFYURL || 'https://abc.com/auth/oauth2/verify/'
       token: 'https://abc.com/auth/oauth2/token/'
     client:
       id: 'process.env.CLIENT_ID || client_id'
