@@ -8,7 +8,7 @@ module.exports =
       verify: process.env.VERIFYURL || 'https://abc.com/auth/oauth2/verify/'
       token: 'https://abc.com/auth/oauth2/token/'
     client:
-      id: 'process.env.CLIENT_ID || client_id'
+      id: process.env.CLIENT_ID || 'client_id'
       secret: 'client_secret'
     user:
       id: 'user_id'
